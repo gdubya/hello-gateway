@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: hello-service
+          uri: lb://hello-service
+          predicates:
+            - Path=/hello/**
+          filters:
+            - RewritePath=/hello/(?.*), /$\{path}
