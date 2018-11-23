@@ -12,4 +12,5 @@ spring:
           filters:
             - StripPrefix=1
 logging:
-  level: debug
+  level:
+    root: debug
