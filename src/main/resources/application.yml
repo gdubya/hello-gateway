@@ -6,7 +6,7 @@ spring:
           enabled: true
       routes:
         - id: hello-service
-          uri: http://hello-service
+          uri: http://hello-service:8080
           predicates:
             - Path=/hello/**
           filters:
