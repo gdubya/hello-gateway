@@ -1,5 +1,5 @@
 # First: generate java runtime module by jlink.
-FROM openjdk:11-slim as jlink-package
+FROM openjdk:11-slim
 
 RUN jlink \
      --module-path /opt/java/jmods \
