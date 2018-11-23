@@ -9,5 +9,7 @@ spring:
           uri: lb://hello-service
           predicates:
             - Path=/hello/**
-          filters:
-            - RewritePath=/hello/(?<segment>.*), /$\{segment}
+            filters:
+              - StripPrefix=1
+logging:
+  level: debug
