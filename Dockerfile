@@ -14,18 +14,13 @@ RUN apt-get update && \
     strip -p --strip-unneeded /opt/jdk-11-mini-runtime/lib/server/libjvm.so
 
 # Second: generate run image: alpine-openjdk-11-mini
-FROM debian:sid-slim
+#FROM debian:sid-slim
 
 ENV JAVA_HOME=/opt/jdk-11-mini-runtime \
     PATH="$PATH:$JAVA_HOME/bin"
 
-LABEL io.k8s.description="Platform for service spring-boot java applications" \
-      io.k8s.display-name="OpenJDK 11" \
-      io.openshift.expose-services="8080:http" \
-      io.openshift.tags="runtime,java,java11,openjdk,openjdk11,springboot"
-
 # Copy the jdk-11-mini-runtime from the builder image
-COPY --from=jlink-package /opt/jdk-11-mini-runtime /opt/jdk-11-mini-runtime
+#COPY --from=jlink-package /opt/jdk-11-mini-runtime /opt/jdk-11-mini-runtime
 
 # Define the application home
 RUN useradd -u 1001 -r -g 0 -d /opt/spring-boot -s /sbin/nologin -c "Default Application User" default && \
@@ -38,9 +33,8 @@ USER 1001
 # Set the default port for applications built using this image
 EXPOSE 8080
 
-
 # The application's jar file
-ARG JAR_FILE=target/hello-gateway-0.0.1-SNAPSHOT.jar
+ARG JAR_FILE=hello-gateway.jar
 
 # Add the application's jar to the container
 ADD ${JAR_FILE} hello-gateway-0.0.1-SNAPSHOT.jar
