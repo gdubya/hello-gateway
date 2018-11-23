@@ -13,4 +13,4 @@ spring:
             - StripPrefix=1
 logging:
   level:
-    root: debug
+    root: info
