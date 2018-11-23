@@ -9,7 +9,7 @@ spring:
           uri: lb://hello-service
           predicates:
             - Path=/hello/**
-            filters:
-              - StripPrefix=1
+          filters:
+            - StripPrefix=1
 logging:
   level: debug
